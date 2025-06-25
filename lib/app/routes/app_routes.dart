@@ -5,10 +5,16 @@ abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
   static const LIST_MEDICATIONS = _Paths.LIST_MEDICATIONS;
+  static const TAKE_MEDICATION = _Paths.TAKE_MEDICATION;
+  static const ALARM_MEDICATION = _Paths.ALARM_MEDICATION;
+  static const EXPIRED_MEDICATIONS = _Paths.EXPIRED_MEDICATIONS;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const LIST_MEDICATIONS = '/list-medications';
+  static const TAKE_MEDICATION = '/take-medication';
+  static const ALARM_MEDICATION = '/alarm-medication';
+  static const EXPIRED_MEDICATIONS = '/expired-medications';
 }
