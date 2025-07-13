@@ -20,13 +20,18 @@ class ExpiredMedicationsView extends GetView<ExpiredMedicationsController> {
         centerTitle: true,
       ),
       body:  Obx(() {
+        final sortedRemedios = List<Remedio>.from(
+        listMedicationsController.remedios.where(
+          (remedio) => remedio.dataValidade < DateTime.now().millisecondsSinceEpoch,
+        ),
+        );
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child:
               // verifica se a lista de remédios está vazia
               // se estiver vazia, exibe uma mensagem
               // caso contrário, exibe a lista de remédios
-              (!listMedicationsController.remedios.isNotEmpty)
+              (!sortedRemedios.isNotEmpty)
                   ? Center(
                     child: Text(
                       'Sem remedios vencidos',
@@ -39,12 +44,6 @@ class ExpiredMedicationsView extends GetView<ExpiredMedicationsController> {
                   )
                   : Builder(
                     builder: (context) {
-                      // Cria uma cópia e ordena: remédios com quantidade > 0 primeiro.
-                        final sortedRemedios = List<Remedio>.from(
-                        listMedicationsController.remedios.where(
-                          (remedio) => remedio.dataValidade < DateTime.now().millisecondsSinceEpoch,
-                        ),
-                        );
                       return ListView.builder(
                         itemCount: sortedRemedios.length,
                         itemBuilder: (context, index) {
@@ -66,12 +65,9 @@ class ExpiredMedicationsView extends GetView<ExpiredMedicationsController> {
                               trailing: IconButton(
                                 icon: Icon(Icons.delete),
                                 onPressed: () {
-                                  // deleteRemedioDialog(remedio);
+                                  deleteRemedioDialog(remedio);
                                 },
                               ),
-                              onTap: () {
-                                // updateRemedioDialog(remedio);
-                              },
                             ),
                           );
                         },
@@ -83,4 +79,37 @@ class ExpiredMedicationsView extends GetView<ExpiredMedicationsController> {
       
     );
   }
+
+
+  void deleteRemedioDialog(Remedio remedio) {
+    Get.defaultDialog(
+      title: "Excluir Remédio",
+      middleText: "Você tem certeza que deseja excluir:\n${remedio.nome}?",
+      onCancel: () => Get.back(),
+      onConfirm: () {
+        Get.back();
+        // Chama o método de exclusão do controlador
+        listMedicationsController.deleteRemedio(remedio.id!);
+      },
+      textConfirm: "Excluir",
+      textCancel: "Cancelar",
+      confirm: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Color.fromARGB(255, 172, 23, 23),
+        ),
+        onPressed: () {
+          Get.back();
+          // Chama o método de exclusão do controlador
+          listMedicationsController.deleteRemedio(remedio.id!);
+        },
+        child: Text("Excluir", style: TextStyle(color: Colors.white)),
+      ),
+      cancel: ElevatedButton(
+        onPressed: () => Get.back(),
+        child: Text("Cancelar"),
+      ),
+    );
+  }
+
+
 }
