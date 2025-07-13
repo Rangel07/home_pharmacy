@@ -33,7 +33,7 @@ class HomeView extends GetView<HomeController> {
             ),
             ElevatedButton(
               onPressed: () => Get.to(() => ExpiredMedicationsView()),
-              child: const Text('[TODO] Remédios vencidos'),
+              child: const Text('Remédios vencidos'),
             ),
           ],
         ),
