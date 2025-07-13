@@ -16,7 +16,7 @@ class ExpiredMedicationsView extends GetView<ExpiredMedicationsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ExpiredMedicationsView'),
+        title: const Text('Medicamentos Vencidos'),
         centerTitle: true,
       ),
       body:  Obx(() {
