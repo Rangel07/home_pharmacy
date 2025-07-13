@@ -1,23 +1,15 @@
 import 'package:get/get.dart';
+import 'package:home_pharmacy/app/data/db_helper.dart';
+import 'package:home_pharmacy/app/data/remedio.dart';
 
 class TakeMedicationController extends GetxController {
-  //TODO: Implement TakeMedicationController
+  
+  var remedios = <Remedio>[].obs;
 
   final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void loadRemedios() async {
+    final data = await DatabaseHelper.instance.readAllRemedios();
+    remedios.assignAll(data);
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

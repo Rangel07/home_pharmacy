@@ -24,15 +24,15 @@ class HomeView extends GetView<HomeController> {
               child: const Text('Lista de Remédios'),
             ),
             ElevatedButton(
-              onPressed: () => Get.to(() => const TakeMedicationView()),
-              child: const Text('[TODO] Tomar remédio'),
+              onPressed: () => Get.to(() => TakeMedicationView()),
+              child: const Text('Tomar remédio'),
             ),
             ElevatedButton(
-              onPressed: () => Get.to(() => const AlarmMedicationView()),
+              onPressed: () => Get.to(() => AlarmMedicationView()),
               child: const Text('[TODO] Definir lembrete'),
             ),
             ElevatedButton(
-              onPressed: () => Get.to(() => const ExpiredMedicationsView()),
+              onPressed: () => Get.to(() => ExpiredMedicationsView()),
               child: const Text('[TODO] Remédios vencidos'),
             ),
           ],

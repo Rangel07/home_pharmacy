@@ -25,6 +25,20 @@ class DatabaseHelper {
       version: 1,
       onCreate: _createDB,
     );
+
+    db.execute('''
+      DROP TABLE IF EXISTS remedios;
+''');
+db.execute('''
+      CREATE TABLE remedios (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        descricao TEXT NOT NULL,
+        quantidade INTEGER NOT NULL,
+        medida TEXT DEFAULT 'capsulas',
+        data_validade INTEGER
+      )
+    ''');
     return db;
   }
 
@@ -38,7 +52,8 @@ class DatabaseHelper {
         nome $textType,
         descricao $textType,
         quantidade INTEGER NOT NULL,
-        data_validade TIMESTAMP
+        medida TEXT NOT NULL DEFAULT 'capsulas',
+        data_validade INTEGER
       )
     ''');
   }

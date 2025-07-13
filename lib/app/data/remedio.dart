@@ -3,10 +3,10 @@ class Remedio {
   String nome;
   String descricao;
   int quantidade;
-  DateTime? dataValidade;
+  int dataValidade;
   String? medida;
 
-  Remedio({this.id, required this.nome, required this.descricao, required this.quantidade, this.dataValidade, this.medida});
+  Remedio({this.id, required this.nome, required this.descricao, required this.quantidade, required this.dataValidade, this.medida});
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
@@ -28,7 +28,7 @@ class Remedio {
       nome: map['nome'],
       descricao: map['descricao'],
       quantidade: map['quantidade'],
-      dataValidade: map['data_validade'] != null ? DateTime.parse(map['data_validade']) : null,
+      dataValidade: map['data_validade'],
       medida: map['medida'] ?? 'unidade',
     );
   }

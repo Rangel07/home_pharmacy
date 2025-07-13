@@ -31,17 +31,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TAKE_MEDICATION,
-      page: () => const TakeMedicationView(),
+      page: () => TakeMedicationView(),
       binding: TakeMedicationBinding(),
     ),
     GetPage(
       name: _Paths.ALARM_MEDICATION,
-      page: () => const AlarmMedicationView(),
+      page: () => AlarmMedicationView(),
       binding: AlarmMedicationBinding(),
     ),
     GetPage(
       name: _Paths.EXPIRED_MEDICATIONS,
-      page: () => const ExpiredMedicationsView(),
+      page: () => ExpiredMedicationsView(),
       binding: ExpiredMedicationsBinding(),
     ),
   ];
