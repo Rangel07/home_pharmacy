@@ -22,7 +22,7 @@ class ExpiredMedicationsView extends GetView<ExpiredMedicationsController> {
       body:  Obx(() {
         final sortedRemedios = List<Remedio>.from(
         listMedicationsController.remedios.where(
-          (remedio) => remedio.dataValidade < DateTime.now().millisecondsSinceEpoch,
+          (remedio) => remedio.dataValidade < DateTime.now().millisecondsSinceEpoch || remedio.quantidade <= 0,
         ),
         );
         return Padding(

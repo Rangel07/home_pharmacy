@@ -39,7 +39,7 @@ class TakeMedicationView extends GetView<TakeMedicationController> {
                     itemCount: listMedicationsController.remedios.length,
                     itemBuilder: (context, index) {
                       final remedio = listMedicationsController.remedios[index];
-                      if (remedio.quantidade <= 0) {
+                      if (remedio.quantidade <= 0 || remedio.dataValidade < DateTime.now().millisecondsSinceEpoch) {
                         return SizedBox.shrink(); // Skip empty medications
                       }
                       return Padding(
@@ -55,7 +55,6 @@ class TakeMedicationView extends GetView<TakeMedicationController> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           tileColor: context.theme.primaryColor.withAlpha(50),
-
                           onTap: () {
                             // Implementar lógica para tomar o remédio
                             showDialog(
